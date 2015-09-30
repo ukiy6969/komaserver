@@ -1,0 +1,10 @@
+.grid-cell(
+  ng-class="{ \
+    'selected': vm.mass.moval, \
+    'selectedKoma': vm.mass.isKoma, \
+    'owner-grid-cell': vm.mass.isHave, \
+    'owner-grid-cell-last': vm.mass.isHave && (vm.mass.x === 1) \
+  }"
+)
+  span.have-cnt()
+  

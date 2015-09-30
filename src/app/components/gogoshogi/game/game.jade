@@ -1,0 +1,73 @@
+- var y = [1, 2, 3, 4, 5];
+- var x = [5, 4, 3, 2, 1];
+- var list = ['金', '銀', '飛', '角', '歩'];
+- var piece = ['KI', 'GI', 'HI', 'KA', 'FU'];
+- var piecer = ['FU', 'KA', 'HI', 'GI', 'KI'];
+
+.gogo-game
+  .grid-container
+    gogoshogi-mass(
+      ng-repeat="mass in game.masses"
+      mass="mass"
+    )
+    
+  .koma-container
+    gogoshogi-koma(
+      ng-repeat="koma in game.komas"
+      koma="koma"
+    )
+    
+  .info-area-container(
+    ng-show="(!game.isStart) || (game.promoteMove) || (game.isEnd)"
+  )
+    .info-start(
+      ng-hide="game.isStart"
+    )
+      h3.title Game Start
+      button.btn.btn-default.center-block(
+        ng-click="game.startGame()"
+        ng-hide="game.isStart"
+      ) start
+
+    .info-promote(
+      ng-show="game.promoteMove"
+    )
+      h3.title Is Promote ?
+      .btn-list
+        button.btn.btn-default(
+          ng-click="game.isPromote(true)"
+        ) Yes
+        button.btn.btn-default(
+          ng-click="game.startGame(false)"
+        ) No
+    
+    .info-end(
+      ng-show="game.isEnd"
+    )
+      h3.title {{ game.message }}
+      h4.title Retry ?
+      .btn-list
+        button.btn.btn-default(
+          ng-click=""
+        ) Yes
+        button.btn.btn-default(
+          ng-click=""
+        ) No
+        
+  .touch-area-container
+    each p, i in piecer
+      .touch-area(
+          class="position-#{i+1}-0"
+          ng-click="game.clickHave(#{p}, true)"
+        )
+    each j in y
+      each i in x
+        .touch-area(
+          class="position-"+i+"-"+j
+          ng-click="game.click(#{i}, #{j})"
+        )
+    each p, i in piece
+      .touch-area(
+          class="position-#{i+1}-6"
+          ng-click="game.clickHave('#{p}', false)"
+        )
