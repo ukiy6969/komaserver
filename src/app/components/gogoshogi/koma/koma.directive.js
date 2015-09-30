@@ -33,14 +33,15 @@ var komaclient;
         };
         GogoshogiKomaController.prototype.getPosition = function () {
             var _this = this;
+            var idx;
             if (this.koma.x === 0 && this.koma.y === 0 && this.koma.enemy) {
-                var idx = _.findIndex(this.pieces, function (p) {
+                idx = _.findIndex(this.pieces, function (p) {
                     return _this.koma.piece === p;
                 });
                 return 'position-' + (idx + 1) + '-0';
             }
             if (this.koma.x === 0 && this.koma.y === 0 && (!this.koma.enemy)) {
-                var idx = _.findIndex(this.pieces, function (p) {
+                idx = _.findIndex(this.pieces, function (p) {
                     return _this.koma.piece === p;
                 });
                 return 'position-' + (5 - idx) + '-6';

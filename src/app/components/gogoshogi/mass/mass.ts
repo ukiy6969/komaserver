@@ -16,6 +16,7 @@ module komaclient {
     private moval: Boolean;
     private isKoma: Boolean;
     private isHave: Boolean;
+    private pieceList: Array<String>;
 
     constructor ( option: ImassOption ) {
 
@@ -24,6 +25,7 @@ module komaclient {
       this.moval = option.moval;
       this.isKoma = option.isKoma;
       this.isHave = option.isHave;
+      this.pieceList = ['KI', 'GI', 'HI', 'KA', 'FU'];
 
     }
 

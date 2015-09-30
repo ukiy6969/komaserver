@@ -8,6 +8,7 @@ var komaclient;
             this.moval = option.moval;
             this.isKoma = option.isKoma;
             this.isHave = option.isHave;
+            this.pieceList = ['KI', 'GI', 'HI', 'KA', 'FU'];
         }
         MassModel.prototype.select = function () {
             this.moval = true;

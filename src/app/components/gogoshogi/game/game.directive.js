@@ -1,5 +1,6 @@
 /// <reference path='../koma/koma.ts' />
 /// <reference path='../mass/mass.ts' />
+/// <reference path="../socket/socket.factory.ts"/>
 var komaclient;
 (function (komaclient) {
     'use strict';
@@ -16,7 +17,6 @@ var komaclient;
     var GogoshogiGameController = (function () {
         /** @ngInject */
         function GogoshogiGameController(gogoshogiSocket) {
-            console.log(this);
             this.komas = [];
             this.komas.push(new komaclient.GogoshogiKomaOu(false));
             this.komas.push(new komaclient.GogoshogiKomaOu(true));
@@ -30,6 +30,8 @@ var komaclient;
             this.komas.push(new komaclient.GogoshogiKomaHi(true));
             this.komas.push(new komaclient.GogoshogiKomaFu(false));
             this.komas.push(new komaclient.GogoshogiKomaFu(true));
+            this.piecesr = ['KI', 'GI', 'HI', 'KA', 'FU'];
+            this.pieces = ['FU', 'KA', 'HI', 'GI', 'KI'];
             this.masses = [];
             this.legalMoves = [];
             for (var j = 0; j <= 6; j++) {
@@ -82,7 +84,6 @@ var komaclient;
                         _this.reverseMove(lmove);
                     }
                 });
-                console.log(lmoves);
                 _this.legalMoves = lmoves;
             });
             this.socket.on('err', function (err) {
@@ -120,6 +121,17 @@ var komaclient;
                 .selectKoma();
         };
         GogoshogiGameController.prototype.selectKomaHave = function (piece, enemy) {
+            var x;
+            var y;
+            if (enemy) {
+                x = _.indexOf(this.piecesr, piece) + 1;
+                y = 0;
+            }
+            else {
+                x = _.indexOf(this.pieces, piece) + 1;
+                y = 6;
+            }
+            _.find(this.masses, { x: x, y: y }).selectKoma();
         };
         GogoshogiGameController.prototype.reset = function () {
             this.masses.forEach(function (mass) {
@@ -172,7 +184,6 @@ var komaclient;
             });
             this.selectKomaHave(piece, enemy);
             this.isSelect = this.getKomaHave(piece, enemy);
-            console.log(this.isSelect);
         };
         GogoshogiGameController.prototype.moveTo = function (x, y) {
             var move;
@@ -222,7 +233,6 @@ var komaclient;
             if (this.color === 1) {
                 this.reverseMove(move);
             }
-            console.log(move);
             var enemy;
             if (this.color === move.color) {
                 enemy = false;

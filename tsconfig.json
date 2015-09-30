@@ -32,16 +32,13 @@
         "!./typings/**/*.ts"
     ],
     "files": [
-        "./src/app/components/githubContributor/githubContributor.service.ts",
         "./src/app/components/gogoshogi/game/game.directive.ts",
         "./src/app/components/gogoshogi/koma/koma.directive.ts",
         "./src/app/components/gogoshogi/koma/koma.ts",
         "./src/app/components/gogoshogi/mass/mass.directive.ts",
         "./src/app/components/gogoshogi/mass/mass.ts",
         "./src/app/components/gogoshogi/socket/socket.factory.ts",
-        "./src/app/components/malarkey/malarkey.directive.ts",
         "./src/app/components/navbar/navbar.directive.ts",
-        "./src/app/components/webDevTec/webDevTec.service.ts",
         "./src/app/index.config.ts",
         "./src/app/index.module.ts",
         "./src/app/index.route.ts",

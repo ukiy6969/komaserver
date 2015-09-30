@@ -53,7 +53,8 @@ gulp.task('develop', function (cb) {
   var called = false;
   nodemon({
     script: 'server/bin/www',
-    ext: 'js jade coffee',
+    watch: ['server/**/*.js'],
+    ext: 'js',
     stdout: false
   }).on('readable', function () {
     this.stdout.on('data', function (chunk) {

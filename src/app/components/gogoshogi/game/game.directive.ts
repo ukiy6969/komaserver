@@ -1,5 +1,6 @@
 /// <reference path='../koma/koma.ts' />
 /// <reference path='../mass/mass.ts' />
+/// <reference path="../socket/socket.factory.ts"/>
 
 module komaclient {
   'use strict';
@@ -40,6 +41,13 @@ module komaclient {
     };
   }
 
+  interface IGogoshogiError {
+  }
+
+  interface IGogoshogiMessage {
+    message: String;
+  }
+
   export class GogoshogiGameController {
 
     public static massX: Number;
@@ -55,10 +63,11 @@ module komaclient {
     private color: number;
     private socket;
     private message;
+    private pieces: Array<String>;
+    private piecesr: Array<String>;
 
     /** @ngInject */
-    constructor(gogoshogiSocket) {
-      console.log(this);
+    constructor(gogoshogiSocket: IGogoshogiSocket) {
       this.komas = [];
       this.komas.push(new GogoshogiKomaOu(false));
       this.komas.push(new GogoshogiKomaOu(true));
@@ -72,6 +81,9 @@ module komaclient {
       this.komas.push(new GogoshogiKomaHi(true));
       this.komas.push(new GogoshogiKomaFu(false));
       this.komas.push(new GogoshogiKomaFu(true));
+
+      this.piecesr = ['KI', 'GI', 'HI', 'KA', 'FU'];
+      this.pieces = ['FU', 'KA', 'HI', 'GI', 'KI'];
 
       this.masses = [];
       this.legalMoves = [];
@@ -129,18 +141,17 @@ module komaclient {
             this.reverseMove(lmove);
           }
         });
-        console.log(lmoves);
         this.legalMoves = lmoves;
       });
-      this.socket.on('err', (err) => {
+      this.socket.on('err', (err: IGogoshogiError) => {
         console.log('err', err);
       });
-      this.socket.on('lose', (lose) => {
+      this.socket.on('lose', (lose: IGogoshogiMessage) => {
         this.endGame(lose);
       });
     }
 
-    endGame(message) {
+    endGame(message: IGogoshogiMessage) {
       this.isEnd = true;
       this.message = message.message;
     }
@@ -174,6 +185,16 @@ module komaclient {
     }
 
     selectKomaHave(piece: String, enemy: Boolean) {
+      var x: number;
+      var y: number;
+      if (enemy) {
+        x = _.indexOf(this.piecesr, piece) + 1;
+        y = 0;
+      } else {
+        x = _.indexOf(this.pieces, piece) + 1;
+        y = 6;
+      }
+      _.find(this.masses, {x: x, y: y}).selectKoma();
     }
 
     reset() {
@@ -238,7 +259,6 @@ module komaclient {
 
       this.selectKomaHave(piece, enemy);
       this.isSelect = this.getKomaHave(piece, enemy);
-      console.log(this.isSelect);
     }
 
     moveTo(x: number, y: number) {
@@ -297,7 +317,6 @@ module komaclient {
       if (this.color === 1) {
         this.reverseMove(move);
       }
-      console.log(move);
       var enemy: Boolean;
       if (this.color === move.color) {
         enemy = false;
@@ -328,7 +347,7 @@ module komaclient {
       this.moveTo(x, y);
     }
 
-    clickHave(piece: String, enemy: Boolean){
+    clickHave(piece: String, enemy: Boolean) {
       if (! this.legalMoves) {
         return;
       }

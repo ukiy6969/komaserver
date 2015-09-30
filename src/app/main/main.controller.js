@@ -4,7 +4,6 @@ var komaclient;
     var MainController = (function () {
         /* @ngInject */
         function MainController($timeout) {
-            this.awesomeThings = new Array();
             this.classAnimation = '';
             this.activate($timeout);
         }

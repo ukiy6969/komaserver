@@ -44,14 +44,15 @@ module komaclient {
     }
 
     getPosition(): String {
+      var idx: number;
       if (this.koma.x === 0 && this.koma.y === 0 && this.koma.enemy) {
-        var idx = _.findIndex(this.pieces, (p: String) => {
+        idx = _.findIndex(this.pieces, (p: String) => {
           return this.koma.piece === p;
         });
         return 'position-' + (idx + 1) + '-0';
       }
       if (this.koma.x === 0 && this.koma.y === 0 && (!this.koma.enemy)) {
-        var idx = _.findIndex(this.pieces, (p: String) => {
+        idx = _.findIndex(this.pieces, (p: String) => {
           return this.koma.piece === p;
         });
         return 'position-' + (5 - idx) + '-6';
