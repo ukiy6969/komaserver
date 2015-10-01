@@ -5,8 +5,8 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
   //res.render('index', { title: 'Express' });
-  //res.sendFile('../public/index.html');
-  res.sendFile('../../.tmp/server/index.html');
+  res.sendFile('../public/index.html');
+  //res.sendFile('../../.tmp/server/index.html');
 });
 
 module.exports = router;
