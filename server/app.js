@@ -30,15 +30,22 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 if (app.locals.ENV_DEVELOPMENT){
   app.use(express.static(path.join(__dirname, '../.tmp/serve')));
   app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
   app.use(express.static(path.join(__dirname, '../src')));
+  app.set('appPath', path.join(__dirname, '../.tmp/serve'))
+} else if (app.get('env') === 'production') {
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.set('appPath', path.join(__dirname, 'public'));
 }
 
-app.use('/', routes);
+app.get('/', function(req, res) {
+  res.sendFile(path.join(app.get('appPath'), 'index.html'))
+});
+
+//app.use('/', routes);
 app.use('/users', users);
 
 /// catch 404 and forward to error handler

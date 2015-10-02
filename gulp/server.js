@@ -45,6 +45,7 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     proxy: proxy,
     browser: browser,
+    ws: true,
     port: port
   });
 }
