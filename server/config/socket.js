@@ -57,6 +57,7 @@ module.exports = function(app) {
                 }
                 return socket.emit('win', {message: 'YOU WIN (>ω<)', game: fgame});
               });
+              return;
             }
             socket.emit('moved', move);
             gogo.getLegalmoves(id, function(err, lmoves){
