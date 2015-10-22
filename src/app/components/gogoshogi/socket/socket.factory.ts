@@ -6,7 +6,7 @@ module komaclient {
   export interface IGogoshogiSocket {()}
   /** @ngInject */
   export function gogoshogiSocket(socketFactory: ISocketFactory) {
-    var socket = io.connect('localhost:3000');
+    var socket = io.connect('/');
     return socketFactory({
       ioSocket: socket
     });
