@@ -1,6 +1,7 @@
 var komaclient;
 (function (komaclient) {
     'use strict';
+    /** @ngInject */
     function acmeNavbar() {
         return {
             restrict: 'E',
@@ -14,8 +15,10 @@ var komaclient;
         };
     }
     komaclient.acmeNavbar = acmeNavbar;
+    /** @ngInject */
     var NavbarController = (function () {
         function NavbarController() {
+            var self = this;
         }
         return NavbarController;
     })();
