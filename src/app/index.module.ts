@@ -10,15 +10,11 @@
 /// <reference path="../app/components/gogoshogi/mass/mass.directive.ts" />
 /// <reference path="./components/gogoshogi/socket/socket.factory.ts"/>
 
-declare var toastr: Toastr;
-declare var moment: moment.MomentStatic;
 
 module komaclient {
   'use strict';
 
   angular.module('komaclient', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'btford.socket-io'])
-    .constant('toastr', toastr)
-    .constant('moment', moment)
     .config(Config)
 
     .config(RouterConfig)

@@ -53,7 +53,6 @@
         ".tmp/typings/angularjs/angular.d.ts",
         ".tmp/typings/jquery/jquery.d.ts",
         ".tmp/typings/lodash/lodash.d.ts",
-        ".tmp/typings/moment/moment.d.ts",
         ".tmp/typings/socket.io-client/socket.io-client.d.ts",
         ".tmp/typings/toastr/toastr.d.ts",
         ".tmp/typings/tsd.d.ts"

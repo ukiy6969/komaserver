@@ -21,8 +21,8 @@ module komaclient {
   class NavbarController {
     public relativeDate: string;
 
-    constructor(moment: moment.MomentStatic) {
-      this.relativeDate = moment(1443152020595).fromNow();
+    constructor() {
+      var self = this;
     }
   }
 }
