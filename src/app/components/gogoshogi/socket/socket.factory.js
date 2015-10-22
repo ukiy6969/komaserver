@@ -1,9 +1,11 @@
 var komaclient;
 (function (komaclient) {
     'use strict';
+    ;
+    ;
     /** @ngInject */
     function gogoshogiSocket(socketFactory) {
-        var socket = io.connect('localhost:3000');
+        var socket = io.connect('/');
         return socketFactory({
             ioSocket: socket
         });

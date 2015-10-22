@@ -64,7 +64,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaOu extends GogoshogiKomaModel{
+  export class GogoshogiKomaOu extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();
@@ -84,7 +84,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaKi extends GogoshogiKomaModel{
+  export class GogoshogiKomaKi extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();
@@ -104,7 +104,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaGi extends GogoshogiKomaModel{
+  export class GogoshogiKomaGi extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();
@@ -124,7 +124,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaKa extends GogoshogiKomaModel{
+  export class GogoshogiKomaKa extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();
@@ -144,7 +144,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaHi extends GogoshogiKomaModel{
+  export class GogoshogiKomaHi extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();
@@ -164,7 +164,7 @@ module komaclient {
 
   }
 
-  export class GogoshogiKomaFu extends GogoshogiKomaModel{
+  export class GogoshogiKomaFu extends GogoshogiKomaModel {
 
     constructor(enemy: Boolean) {
       super();

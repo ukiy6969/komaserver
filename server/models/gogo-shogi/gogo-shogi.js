@@ -15,7 +15,7 @@ function GogoController () {
   var self = this;
   self.firstMove;
   self.secondMove;
-  self.komachan = Komachan.komachan();
+  self.komachan = Komachan.komachan({debug: true});
 }
 
 GogoController.prototype.newGame = function(opt, cb) {
