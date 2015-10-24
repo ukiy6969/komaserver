@@ -1,10 +1,9 @@
 //debug
 var GogoShogiModel = require('./gogo-shogi.model.js'),
     path = require('path'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    co = require('co'),
     Komachan = require('komachan');
-
-delete(require.cache[path.resolve('komachan.js')]);
 
 /**
   * @param {Object} option
@@ -15,10 +14,11 @@ function GogoController () {
   var self = this;
   self.firstMove;
   self.secondMove;
-  self.komachan = Komachan.komachan({debug: true});
+  self.komachan = Komachan.newKomachan();
+  self.komachan.start();
 }
 
-GogoController.prototype.newGame = function(opt, cb) {
+GogoController.prototype.newGame = function(opt) {
   var self = this;
   if (!opt) { return new Error('must be opt'); }
   if (opt.player.length !== 2) {
@@ -35,72 +35,44 @@ GogoController.prototype.newGame = function(opt, cb) {
       secondMove: second
     }
   };
-  if(!cb){ return ; }
-  cb(self.model);
+  return self.model;
 }
-GogoController.prototype.startGame = function(g, cb){
+GogoController.prototype.startGame = function(g){
   var self = this;
   self.model = new GogoShogiModel(g);
-  self.model.save(function (err, game) {
-    if (err) { return cb(err); }
-    return cb(null, game);
+  return self.model.save();
+}
+GogoController.prototype.endGame = function(id){
+  var self = this;
+  return co(function* (){
+    var game = yield GogoShogiModel.findById(id).exec();
+    return yield game.save();
   });
 }
-GogoController.prototype.endGame = function(id, cb){
+GogoController.prototype.moveClient = function(id,cmove){
   var self = this;
-  GogoShogiModel.findById(id, function(err, game){
-    if(err){ return cb(err); }
-    game.conclude = {};
-    game.conclude.winner = game.moves[game.moves.length-1].color;
-    game.conclude.loser = 1 - game.conclude.winner;
-    game.save(function(err, fgame){
-      if(err){ return cb(err); }
-      return cb(null, fgame);
-    });
+  return co(function* (){
+    var move = self.komachan.move(cmove);
+    var game = yield GogoShogiModel.findById(id).exec();
+    game.moves.push(move);
+    yield game.save();
+    return move;
   });
 }
-GogoController.prototype.moveClient = function(id,cmove,cb){
+GogoController.prototype.moveKomachan = function(id){
   var self = this;
-  self.komachan.move(cmove, function(err, move){
-    if(!cb){ return ; }
-    if (err) { return cb(err); }
-    GogoShogiModel.findById(id, function(err, game){
-      if(err){ return cb(err);}
-      if(move.lose){
-        _.merge(move, cmove);
-      }
-      game.moves.push(move);
-      game.save(function(err, game){
-        if(err){ return cb(err); }
-        cb(null, game.moves[game.moves.length-1]);
-      })
-    });
+  return co(function* (){
+    var move = self.komachan.search();
+    var game = yield GogoShogiModel.findById(id).exec();
+    game.moves.push(move);
+    yield game.save();
+    return move;
   });
 }
-GogoController.prototype.moveKomachan = function(id, cb){
+GogoController.prototype.getLegalmoves = function(id){
   var self = this;
-  self.komachan.search(function(err, move){
-    if(!cb){ return ; }
-    if (err) { return cb(err); }
-    if (move.lose){
-      return cb(null, move);
-    }
-    GogoShogiModel.findById(id, function(err, game){
-      if(err){ return cb(err); }
-      game.moves.push(move);
-      game.save(function(err, game){
-        if(err){ return cb(err); }
-        cb(null, game.moves[game.moves.length-1]);
-      });
-    });
-  });
-}
-GogoController.prototype.getLegalmoves = function(id, cb){
-  var self = this;
-  self.komachan.legal(function(err, legalmoves){
-    if(!cb){ return; }
-    if(err) { return cb(err); }
-    cb(null, legalmoves);
+  return co(function* (){
+    return self.komachan.legal();
   });
 }
 GogoController.prototype.end = function(){

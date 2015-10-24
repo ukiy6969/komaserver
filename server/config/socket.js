@@ -1,5 +1,6 @@
 var socketIo = require('socket.io');
 var gogoShogi = require('../models/gogo-shogi/gogo-shogi');
+var co = require('co');
 module.exports = function(app) {
   var io = socketIo(app);
   var komachanSocket = null;
@@ -8,78 +9,67 @@ module.exports = function(app) {
     socket.on('new-game', function(data) {
       var gogo = gogoShogi.game();
       var id;
-      gogo.newGame({player: ['client', 'koma']}, function(game){
-        io.emit('confirm', game);
-      });
+      var game = gogo.newGame({player: ['client', 'koma']})
+      socket.emit('confirm', game);
       socket.once('agree', function(data){
-        gogo.startGame(data, function(err, game){
+        return co(function* (){
+          var game = yield gogo.startGame(data);
           id = game._id;
           socket.join(id);
           socket.emit('start', game);
-          if (gogo.firstMove === 'koma'){
-            gogo.moveKomachan(id, function(err, move){
-              if(err) { return socket.emit('err', err); }
-              socket.emit('moved', move);
-              gogo.getLegalmoves(id, function(err, lmoves){
-                if(err) { return socket.emit('err', err); }
-                socket.emit('legal', lmoves);
-              });
-            });
-          }else {
-            gogo.getLegalmoves(id, function(err, lmoves){
-              if(err) { return socket.emit('err', err); }
-              socket.emit('legal', lmoves);
-            });
+          if( gogo.firstMove === 'koma' ) {
+            var move = yield gogo.moveKomachan(id);
+            socket.emit('moved', move);
+            var legalmoves = yield gogo.getLegalmoves(id);
+            socket.emit('legal', legalmoves);
+          } else {
+            var legalmoves = yield gogo.getLegalmoves(id);
+            socket.emit('legal', legalmoves);
           }
+        }).catch(function(err){
+          console.log(err);
+          socket.emit('err', err);
         });
       });
       socket.on('move', function(data){
         var id = socket.rooms[socket.rooms.length-1];
-        gogo.moveClient(id, data, function(err, move){
-          if (err) { return socket.emit('err', err); }
-          if (move.lose){
+        return co(function* (){
+          var move = yield gogo.moveClient(id, data);
+          if (move.love) {
+            var lgame = yield gogo.endGame(id);
             socket.emit('lose', move);
             if(gogo) {
-              gogo.end();
               gogo = null;
             }
             return;
           }
           socket.emit('moved', move);
-          gogo.moveKomachan(id, function(err, move){
-            if(err) { return socket.emit('err', err); }
-            if(move.lose){
-              gogo.endGame(id, function(err, fgame){
-                if(err){ return socket.emit('err', err); }
-                if(gogo) {
-                  gogo.end();
-                  gogo = null;
-                }
-                return socket.emit('win', {message: 'YOU WIN (>ω<)', game: fgame});
-              });
-              return;
+          var kmove = yield gogo.moveKomachan(id);
+          if (move.lose) {
+            var wgame = yield gogo.endGame(id);
+            socket.emit('win', {message: 'YOU WIN (>ω<)', game: fgame});
+            if (gogo) {
+              gogo = null;
             }
-            socket.emit('moved', move);
-            gogo.getLegalmoves(id, function(err, lmoves){
-              if(err) { return socket.emit('err', err); }
-              if(!lmoves.length){
-                gogo.endGame(id, function(err, fgame){
-                  if(err){ return socket.emit('err', err); }
-                  if(gogo) {
-                    gogo.end();
-                    gogo = null;
-                  }
-                  return socket.emit('lose', {message: 'YOU LOSE >_<', game: fgame});
-                });
-              }
-              socket.emit('legal', lmoves);
-            });
-          });
+            return;
+          }
+          socket.emit('moved', kmove);
+          var legalMoves = yield gogo.getLegalmoves(id);
+          if (!legalMoves.length) {
+            var lgame = yield gogo.endGame(id);
+            socket.emit('lose', {message: 'YOU LOSE >_<', game: lgame});
+            if(gogo) {
+              gogo = null;
+            }
+            return;
+          }
+          socket.emit('legal', legalMoves);
+        }).catch(function(err){
+          console.log(err);
         });
       });
       socket.on('disconnect', function(data){
         if(gogo) {
-          gogo.end();
           gogo = null;
         }
       });

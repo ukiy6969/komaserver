@@ -56,7 +56,10 @@ gulp.task('develop', function (cb) {
     script: 'server/bin/www',
     watch: ['server/**/*.js'],
     ext: 'js',
-    stdout: false
+    stdout: false,
+    execMap: {
+      js: "node --harmony --use_strict"
+    }, 
   }).on('readable', function () {
     this.stdout.on('data', function (chunk) {
       if(/^Express server listening on port/.test(chunk)){
