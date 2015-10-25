@@ -53,6 +53,9 @@ GogoController.prototype.moveClient = function(id,cmove){
   var self = this;
   return co(function* (){
     var move = self.komachan.move(cmove);
+    if (!move) {
+      return ((move || {}).lose = true);
+    }
     var game = yield GogoShogiModel.findById(id).exec();
     game.moves.push(move);
     yield game.save();
@@ -63,6 +66,9 @@ GogoController.prototype.moveKomachan = function(id){
   var self = this;
   return co(function* (){
     var move = self.komachan.search();
+    if (!move) {
+      return ((move || {}).lose = true);
+    }
     var game = yield GogoShogiModel.findById(id).exec();
     game.moves.push(move);
     yield game.save();
