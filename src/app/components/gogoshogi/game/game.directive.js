@@ -1,38 +1,36 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
-    switch (arguments.length) {
-        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
-        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
-        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
-    }
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, NgFor, NgIf } from 'angular2/angular2';
-import { GogoshogiKomaOu, GogoshogiKomaKi, GogoshogiKomaGi, GogoshogiKomaKa, GogoshogiKomaHi, GogoshogiKomaFu } from '../koma/koma';
-import { MassModel } from '../mass/mass';
-import { _ } from 'lodash';
-import io from 'socket.io-client';
-import { Mass } from '../mass/mass.directive';
-import { Koma } from '../koma/koma.directive';
-import './game.css!';
-import "bootstrap/css/bootstrap.css!";
-export let GogoshogiGame = class {
+/// <reference path="../../../../typings/tsd.d.ts"/>
+var angular2_1 = require('angular2/angular2');
+var koma_1 = require('../koma/koma');
+var mass_1 = require('../mass/mass');
+var _ = require('lodash');
+var mass_directive_1 = require('../mass/mass.directive');
+var koma_directive_1 = require('../koma/koma.directive');
+require('./game.css!');
+require("bootstrap/css/bootstrap.css!");
+let GogoshogiGame = class {
     constructor() {
         this.komas = [];
-        this.komas.push(new GogoshogiKomaOu(false));
-        this.komas.push(new GogoshogiKomaOu(true));
-        this.komas.push(new GogoshogiKomaKi(false));
-        this.komas.push(new GogoshogiKomaKi(true));
-        this.komas.push(new GogoshogiKomaGi(false));
-        this.komas.push(new GogoshogiKomaGi(true));
-        this.komas.push(new GogoshogiKomaKa(false));
-        this.komas.push(new GogoshogiKomaKa(true));
-        this.komas.push(new GogoshogiKomaHi(false));
-        this.komas.push(new GogoshogiKomaHi(true));
-        this.komas.push(new GogoshogiKomaFu(false));
-        this.komas.push(new GogoshogiKomaFu(true));
+        this.komas.push(new koma_1.GogoshogiKomaOu(false));
+        this.komas.push(new koma_1.GogoshogiKomaOu(true));
+        this.komas.push(new koma_1.GogoshogiKomaKi(false));
+        this.komas.push(new koma_1.GogoshogiKomaKi(true));
+        this.komas.push(new koma_1.GogoshogiKomaGi(false));
+        this.komas.push(new koma_1.GogoshogiKomaGi(true));
+        this.komas.push(new koma_1.GogoshogiKomaKa(false));
+        this.komas.push(new koma_1.GogoshogiKomaKa(true));
+        this.komas.push(new koma_1.GogoshogiKomaHi(false));
+        this.komas.push(new koma_1.GogoshogiKomaHi(true));
+        this.komas.push(new koma_1.GogoshogiKomaFu(false));
+        this.komas.push(new koma_1.GogoshogiKomaFu(true));
         this.piecesr = ['KI', 'GI', 'HI', 'KA', 'FU'];
         this.pieces = ['FU', 'KA', 'HI', 'GI', 'KI'];
         this.masses = [];
@@ -40,24 +38,22 @@ export let GogoshogiGame = class {
         for (var j = 0; j <= 6; j++) {
             for (var i = 5; i >= 1; i--) {
                 if (j === 0) {
-                    this.masses.push(new MassModel({
+                    this.masses.push(new mass_1.MassModel({
                         x: i, y: j, moval: false, isKoma: false, isHave: true
                     }));
                     continue;
                 }
                 if (j === 6) {
-                    this.masses.push(new MassModel({
+                    this.masses.push(new mass_1.MassModel({
                         x: i, y: j, moval: false, isKoma: false, isHave: true
                     }));
                     continue;
                 }
-                this.masses.push(new MassModel({
+                this.masses.push(new mass_1.MassModel({
                     x: i, y: j, moval: false, isKoma: false, isHave: false
                 }));
             }
         }
-        console.log(window.io);
-        console.log('io', io);
         //this.socket = window.io.connect('localhost:3000');
         this.isStart = false;
         this.promoteMove = null;
@@ -275,11 +271,12 @@ export let GogoshogiGame = class {
     }
 };
 GogoshogiGame = __decorate([
-    Component({
+    angular2_1.Component({
         selector: 'gogoshogi-game',
         templateUrl: '/src/app/components/gogoshogi/game/game.html',
-        directives: [NgFor, Mass, Koma, NgIf]
+        directives: [angular2_1.NgFor, mass_directive_1.Mass, koma_directive_1.Koma, angular2_1.NgIf]
     }), 
     __metadata('design:paramtypes', [])
 ], GogoshogiGame);
+exports.GogoshogiGame = GogoshogiGame;
 //# sourceMappingURL=game.directive.js.map

@@ -1,9 +1,10 @@
+/// <reference path="../../../../typings/tsd.d.ts"/>
 import { Component, bootstrap, NgFor, NgIf} from 'angular2/angular2';
 import {  GogoshogiKomaModel,GogoshogiKomaOu,GogoshogiKomaKi,GogoshogiKomaGi,GogoshogiKomaKa,GogoshogiKomaHi,GogoshogiKomaFu} from '../koma/koma';
 import { MassModel } from '../mass/mass';
 import { IGogoshogiSocket } from '../socket/socket.factory';
-import { _ } from 'lodash';
-import io from 'socket.io-client';
+import * as _ from 'lodash';
+import * as io from 'socket.io-client';
 import { Mass } from '../mass/mass.directive';
 import { Koma } from '../koma/koma.directive';
 import './game.css!'
@@ -105,8 +106,6 @@ export class GogoshogiGame {
       }
     }
 
-    console.log(window.io);
-    console.log('io', io);
     //this.socket = window.io.connect('localhost:3000');
 
     this.isStart = false;
