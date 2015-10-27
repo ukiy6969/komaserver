@@ -1,0 +1,69 @@
+
+<div class="game-area">
+  <div class="gogo-game">
+    <div class="grid-container">
+      <gogoshogi-mass *ng-for="#mass of masses" [mass]="mass"></gogoshogi-mass>
+    </div>
+    <div class="koma-container">
+      <gogoshogi-koma *ng-for="#koma of komas" [koma]="koma"></gogoshogi-koma>
+    </div>
+    <div *ng-if="!isStart || promoteMove || isEnd" class="info-area-container">
+      <div [hidden]="isStart" class="info-start">
+        <h3 class="title">Game Start</h3>
+        <button (click)="startGame()" class="btn btn-default center-block">start</button>
+      </div>
+      <div [class.hidden]="!promoteMove" class="info-promote">
+        <h3 class="title">Is Promote ?</h3>
+        <div class="btn-list">
+          <button (click)="game.isPromote(true)" class="btn btn-default">Yes</button>
+          <button (click)="game.startGame(false)" class="btn btn-default">No</button>
+        </div>
+        <div [class.hidden]="!isEnd" class="info-end">
+          <h3 class="title">{{ message }}</h3>
+          <h4 class="title">Retry ?</h4>
+          <div class="btn-list">
+            <button class="btn btn-default">Yes</button>
+            <button class="btn btn-default">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="touch-area-container">
+      <div (click)="clickHave('FU', true)" class="touch-area position-1-0"></div>
+      <div (click)="clickHave('KA', true)" class="touch-area position-2-0"></div>
+      <div (click)="clickHave('HI', true)" class="touch-area position-3-0"></div>
+      <div (click)="clickHave('GI', true)" class="touch-area position-4-0"></div>
+      <div (click)="clickHave('KI', true)" class="touch-area position-5-0"></div>
+      <div (click)="click(5, 1)" class="touch-area position-5-1"></div>
+      <div (click)="click(4, 1)" class="touch-area position-4-1"></div>
+      <div (click)="click(3, 1)" class="touch-area position-3-1"></div>
+      <div (click)="click(2, 1)" class="touch-area position-2-1"></div>
+      <div (click)="click(1, 1)" class="touch-area position-1-1"></div>
+      <div (click)="click(5, 2)" class="touch-area position-5-2"></div>
+      <div (click)="click(4, 2)" class="touch-area position-4-2"></div>
+      <div (click)="click(3, 2)" class="touch-area position-3-2"></div>
+      <div (click)="click(2, 2)" class="touch-area position-2-2"></div>
+      <div (click)="click(1, 2)" class="touch-area position-1-2"></div>
+      <div (click)="click(5, 3)" class="touch-area position-5-3"></div>
+      <div (click)="click(4, 3)" class="touch-area position-4-3"></div>
+      <div (click)="click(3, 3)" class="touch-area position-3-3"></div>
+      <div (click)="click(2, 3)" class="touch-area position-2-3"></div>
+      <div (click)="click(1, 3)" class="touch-area position-1-3"></div>
+      <div (click)="click(5, 4)" class="touch-area position-5-4"></div>
+      <div (click)="click(4, 4)" class="touch-area position-4-4"></div>
+      <div (click)="click(3, 4)" class="touch-area position-3-4"></div>
+      <div (click)="click(2, 4)" class="touch-area position-2-4"></div>
+      <div (click)="click(1, 4)" class="touch-area position-1-4"></div>
+      <div (click)="click(5, 5)" class="touch-area position-5-5"></div>
+      <div (click)="click(4, 5)" class="touch-area position-4-5"></div>
+      <div (click)="click(3, 5)" class="touch-area position-3-5"></div>
+      <div (click)="click(2, 5)" class="touch-area position-2-5"></div>
+      <div (click)="click(1, 5)" class="touch-area position-1-5"></div>
+      <div (click)="clickHave('KI', false)" class="touch-area position-1-6"></div>
+      <div (click)="clickHave('GI', false)" class="touch-area position-2-6"></div>
+      <div (click)="clickHave('HI', false)" class="touch-area position-3-6"></div>
+      <div (click)="clickHave('KA', false)" class="touch-area position-4-6"></div>
+      <div (click)="clickHave('FU', false)" class="touch-area position-5-6"></div>
+    </div>
+  </div>
+</div>

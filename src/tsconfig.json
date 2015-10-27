@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts",
+    "!./jspm_packages/**/*.ts",
+    "!./typings/**/*.ts"
+  ],
+  "files": [
+    "app/app.ts",
+    "app/components/gogoshogi/game/game.directive.ts",
+    "app/components/gogoshogi/koma/koma.directive.ts",
+    "app/components/gogoshogi/koma/koma.ts",
+    "app/components/gogoshogi/mass/mass.directive.ts",
+    "app/components/gogoshogi/mass/mass.ts",
+    "app/components/gogoshogi/socket/socket.factory.ts",
+    "app/components/navbar/navbar.directive.ts"
+  ],
+  "exclude": []
+}

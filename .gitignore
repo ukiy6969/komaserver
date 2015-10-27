@@ -8,3 +8,4 @@ server/public/**/*
 **/*.log
 typings/
 start.sh
+src/jspm_packages

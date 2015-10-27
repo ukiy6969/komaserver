@@ -1,0 +1,412 @@
+.game-area {
+  width: 400px;
+  height: width;
+  float: none;
+  margin: 0 auto; }
+  .game-area .gogo-game {
+    width: 400px;
+    height: 559.2px;
+    background-color: #FFCC66; }
+    .game-area .gogo-game .grid-container {
+      width: 400px;
+      height: 559.2px;
+      z-index: 1;
+      position: absolute;
+      border-top: solid 2px black;
+      border-left: solid 2px black; }
+      .game-area .gogo-game .grid-container .grid-cell {
+        width: 79.6px;
+        height: 79.6px;
+        margin-bottom: 0;
+        margin-right: 0;
+        float: left;
+        border-right: solid 2px black;
+        border-bottom: solid 2px black; }
+        .game-area .gogo-game .grid-container .grid-cell.selected {
+          background-color: #151639; }
+        .game-area .gogo-game .grid-container .grid-cell.selectedKoma {
+          background-color: red; }
+        .game-area .gogo-game .grid-container .grid-cell.owner-grid-cell {
+          border-right: none; }
+        .game-area .gogo-game .grid-container .grid-cell.owner-grid-cell-last {
+          border-right: solid 2px black; }
+    .game-area .gogo-game .koma-container {
+      width: 398px;
+      height: 398px;
+      padding-left: 2px;
+      padding-top: 2px;
+      z-index: 2;
+      position: absolute; }
+      .game-area .gogo-game .koma-container .koma {
+        width: 77px;
+        height: 77px;
+        margin-bottom: 2px;
+        margin-right: 2px;
+        position: absolute; }
+        .game-area .gogo-game .koma-container .koma:before {
+          content: '';
+          width: 0;
+          height: 0;
+          border-top: solid 9.24px transparent;
+          border-right: solid 23.1px transparent;
+          border-bottom: solid 9.24px orange;
+          border-left: solid 23.1px transparent;
+          margin: 0 auto;
+          position: absolute;
+          left: 50%;
+          margin-left: -23.1px; }
+        .game-area .gogo-game .koma-container .koma .trapezoid {
+          width: 61.6px;
+          height: 77px;
+          border-bottom: 61.6px solid orange;
+          border-left: 7.7px solid transparent;
+          border-right: 7.7px solid transparent;
+          margin: 0 auto; }
+        .game-area .gogo-game .koma-container .koma .text {
+          height: 43.12px;
+          width: 43.12px;
+          font-size: 43.12px;
+          z-index: 3;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-left: -21.56px;
+          margin-top: -21.56px; }
+        .game-area .gogo-game .koma-container .koma.position-1-0 {
+          transform: translate(316px, 0px); }
+          .game-area .gogo-game .koma-container .koma.position-1-0.reverse {
+            transform: translate(316px, 2px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-1 {
+          transform: translate(316px, 79px); }
+          .game-area .gogo-game .koma-container .koma.position-1-1.reverse {
+            transform: translate(316px, 81px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-2 {
+          transform: translate(316px, 158px); }
+          .game-area .gogo-game .koma-container .koma.position-1-2.reverse {
+            transform: translate(316px, 160px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-3 {
+          transform: translate(316px, 237px); }
+          .game-area .gogo-game .koma-container .koma.position-1-3.reverse {
+            transform: translate(316px, 239px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-4 {
+          transform: translate(316px, 316px); }
+          .game-area .gogo-game .koma-container .koma.position-1-4.reverse {
+            transform: translate(316px, 318px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-5 {
+          transform: translate(316px, 395px); }
+          .game-area .gogo-game .koma-container .koma.position-1-5.reverse {
+            transform: translate(316px, 397px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-1-6 {
+          transform: translate(316px, 474px); }
+          .game-area .gogo-game .koma-container .koma.position-1-6.reverse {
+            transform: translate(316px, 476px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-0 {
+          transform: translate(237px, 0px); }
+          .game-area .gogo-game .koma-container .koma.position-2-0.reverse {
+            transform: translate(237px, 2px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-1 {
+          transform: translate(237px, 79px); }
+          .game-area .gogo-game .koma-container .koma.position-2-1.reverse {
+            transform: translate(237px, 81px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-2 {
+          transform: translate(237px, 158px); }
+          .game-area .gogo-game .koma-container .koma.position-2-2.reverse {
+            transform: translate(237px, 160px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-3 {
+          transform: translate(237px, 237px); }
+          .game-area .gogo-game .koma-container .koma.position-2-3.reverse {
+            transform: translate(237px, 239px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-4 {
+          transform: translate(237px, 316px); }
+          .game-area .gogo-game .koma-container .koma.position-2-4.reverse {
+            transform: translate(237px, 318px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-5 {
+          transform: translate(237px, 395px); }
+          .game-area .gogo-game .koma-container .koma.position-2-5.reverse {
+            transform: translate(237px, 397px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-2-6 {
+          transform: translate(237px, 474px); }
+          .game-area .gogo-game .koma-container .koma.position-2-6.reverse {
+            transform: translate(237px, 476px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-0 {
+          transform: translate(158px, 0px); }
+          .game-area .gogo-game .koma-container .koma.position-3-0.reverse {
+            transform: translate(158px, 2px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-1 {
+          transform: translate(158px, 79px); }
+          .game-area .gogo-game .koma-container .koma.position-3-1.reverse {
+            transform: translate(158px, 81px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-2 {
+          transform: translate(158px, 158px); }
+          .game-area .gogo-game .koma-container .koma.position-3-2.reverse {
+            transform: translate(158px, 160px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-3 {
+          transform: translate(158px, 237px); }
+          .game-area .gogo-game .koma-container .koma.position-3-3.reverse {
+            transform: translate(158px, 239px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-4 {
+          transform: translate(158px, 316px); }
+          .game-area .gogo-game .koma-container .koma.position-3-4.reverse {
+            transform: translate(158px, 318px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-5 {
+          transform: translate(158px, 395px); }
+          .game-area .gogo-game .koma-container .koma.position-3-5.reverse {
+            transform: translate(158px, 397px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-3-6 {
+          transform: translate(158px, 474px); }
+          .game-area .gogo-game .koma-container .koma.position-3-6.reverse {
+            transform: translate(158px, 476px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-0 {
+          transform: translate(79px, 0px); }
+          .game-area .gogo-game .koma-container .koma.position-4-0.reverse {
+            transform: translate(79px, 2px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-1 {
+          transform: translate(79px, 79px); }
+          .game-area .gogo-game .koma-container .koma.position-4-1.reverse {
+            transform: translate(79px, 81px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-2 {
+          transform: translate(79px, 158px); }
+          .game-area .gogo-game .koma-container .koma.position-4-2.reverse {
+            transform: translate(79px, 160px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-3 {
+          transform: translate(79px, 237px); }
+          .game-area .gogo-game .koma-container .koma.position-4-3.reverse {
+            transform: translate(79px, 239px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-4 {
+          transform: translate(79px, 316px); }
+          .game-area .gogo-game .koma-container .koma.position-4-4.reverse {
+            transform: translate(79px, 318px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-5 {
+          transform: translate(79px, 395px); }
+          .game-area .gogo-game .koma-container .koma.position-4-5.reverse {
+            transform: translate(79px, 397px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-4-6 {
+          transform: translate(79px, 474px); }
+          .game-area .gogo-game .koma-container .koma.position-4-6.reverse {
+            transform: translate(79px, 476px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-0 {
+          transform: translate(0px, 0px); }
+          .game-area .gogo-game .koma-container .koma.position-5-0.reverse {
+            transform: translate(0px, 2px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-1 {
+          transform: translate(0px, 79px); }
+          .game-area .gogo-game .koma-container .koma.position-5-1.reverse {
+            transform: translate(0px, 81px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-2 {
+          transform: translate(0px, 158px); }
+          .game-area .gogo-game .koma-container .koma.position-5-2.reverse {
+            transform: translate(0px, 160px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-3 {
+          transform: translate(0px, 237px); }
+          .game-area .gogo-game .koma-container .koma.position-5-3.reverse {
+            transform: translate(0px, 239px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-4 {
+          transform: translate(0px, 316px); }
+          .game-area .gogo-game .koma-container .koma.position-5-4.reverse {
+            transform: translate(0px, 318px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-5 {
+          transform: translate(0px, 395px); }
+          .game-area .gogo-game .koma-container .koma.position-5-5.reverse {
+            transform: translate(0px, 397px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+        .game-area .gogo-game .koma-container .koma.position-5-6 {
+          transform: translate(0px, 474px); }
+          .game-area .gogo-game .koma-container .koma.position-5-6.reverse {
+            transform: translate(0px, 476px) rotate(180deg); }
+        .game-area .gogo-game .koma-container .koma .have-cnt {
+          width: 19.25px;
+          height: 19.25px;
+          position: absolute; }
+    .game-area .gogo-game .info-area-container {
+      width: 398px;
+      height: 559.2px;
+      background-color: rgba(103, 101, 133, 0.4);
+      position: absolute;
+      z-index: 5; }
+      .game-area .gogo-game .info-area-container .info-start {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+        .game-area .gogo-game .info-area-container .info-start .title {
+          text-align: center;
+          color: black;
+          background-color: inherit; }
+        .game-area .gogo-game .info-area-container .info-start .btn-list {
+          width: 80%;
+          text-align: center;
+          display: inline-block; }
+      .game-area .gogo-game .info-area-container .info-promote {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+        .game-area .gogo-game .info-area-container .info-promote .title {
+          text-align: center;
+          color: black;
+          background-color: inherit; }
+        .game-area .gogo-game .info-area-container .info-promote .btn-list {
+          text-align: center; }
+      .game-area .gogo-game .info-area-container .info-end {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+        .game-area .gogo-game .info-area-container .info-end .title {
+          text-align: center;
+          color: black;
+          background-color: inherit; }
+        .game-area .gogo-game .info-area-container .info-end .btn-list {
+          text-align: center; }
+    .game-area .gogo-game .touch-area-container {
+      width: 398px;
+      height: 398px;
+      background-color: transparent;
+      position: absolute;
+      z-index: 4; }
+      .game-area .gogo-game .touch-area-container .touch-area {
+        width: 79.6px;
+        height: 79.6px;
+        background-color: transparent;
+        float: left; }
