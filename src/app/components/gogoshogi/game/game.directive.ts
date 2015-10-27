@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import * as io from 'socket.io-client';
 import { Mass } from '../mass/mass.directive';
 import { Koma } from '../koma/koma.directive';
-import './game.css!'
+import './game.scss!'
 import "bootstrap/css/bootstrap.css!"
 
 interface IGogoshogiMoveOpt {
