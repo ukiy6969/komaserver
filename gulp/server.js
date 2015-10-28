@@ -59,7 +59,7 @@ gulp.task('develop', function (cb) {
     stdout: false,
     execMap: {
       js: "node --harmony --use_strict"
-    }, 
+    },
   }).on('readable', function () {
     this.stdout.on('data', function (chunk) {
       if(/^Express server listening on port/.test(chunk)){
@@ -72,9 +72,11 @@ gulp.task('develop', function (cb) {
     called = true;
   }).on('restart', function onRestart(){
     setTimeout(function reload() {
+        /*
         browserSync.reload({
           stream: false   //
         });
+        */
       }, 3000);
   });
 });
@@ -84,7 +86,7 @@ browserSync.use(browserSyncSpa({
 }));
 
 gulp.task('serve', ['watch', 'develop'], function () {
-  browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
+  //browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
 gulp.task('serve:dist', ['build'], function () {

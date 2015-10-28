@@ -6,7 +6,7 @@ var gutil = require('gulp-util');
 var path = require('path');
 var tsd = require('tsd');
 
-var tsdJson = 'tsd.json';
+var tsdJson = 'src/tsd.json';
 var tsdApi = new tsd.getAPI(tsdJson);
 
 gulp.task('tsd:install', function () {

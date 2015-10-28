@@ -13,6 +13,7 @@ import { Component, NgFor, NgIf } from 'angular2/angular2';
 import { GogoshogiKomaOu, GogoshogiKomaKi, GogoshogiKomaGi, GogoshogiKomaKa, GogoshogiKomaHi, GogoshogiKomaFu } from '../koma/koma';
 import { MassModel } from '../mass/mass';
 import * as _ from 'lodash';
+import * as io from 'socket.io-client';
 import { Mass } from '../mass/mass.directive';
 import { Koma } from '../koma/koma.directive';
 import './game.scss!';
@@ -55,7 +56,7 @@ export let GogoshogiGame = class {
                 }));
             }
         }
-        //this.socket = window.io.connect('localhost:3000');
+        this.socket = io.connect('localhost:3000');
         this.isStart = false;
         this.promoteMove = null;
         this.isEnd = false;
