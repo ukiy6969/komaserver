@@ -19,6 +19,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.19",
     "lodash": "npm:lodash@3.10.1",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
+    "scss": "github:theefer/plugin-sass@master",
     "socket.io-client": "npm:socket.io-client@1.3.7",
     "systemjs": "npm:systemjs@0.19.5",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
@@ -92,6 +93,10 @@ System.config({
     },
     "github:jspm/nodelibs-zlib@0.1.0": {
       "browserify-zlib": "npm:browserify-zlib@0.1.4"
+    },
+    "github:theefer/plugin-sass@master": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "sass.js": "npm:sass.js@0.9.4"
     },
     "github:twbs/bootstrap@3.3.5": {
       "jquery": "github:components/jquery@2.1.4"
@@ -461,6 +466,13 @@ System.config({
     },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:sass.js@0.9.4": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:sha.js@2.4.4": {
