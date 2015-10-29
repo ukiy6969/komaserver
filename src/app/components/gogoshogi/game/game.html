@@ -12,19 +12,19 @@
         <h3 class="title">Game Start</h3>
         <button (click)="startGame()" class="btn btn-default center-block">start</button>
       </div>
-      <div [class.hidden]="!promoteMove" class="info-promote">
+      <div [hidden]="!promoteMove" class="info-promote">
         <h3 class="title">Is Promote ?</h3>
         <div class="btn-list">
-          <button (click)="game.isPromote(true)" class="btn btn-default">Yes</button>
-          <button (click)="game.startGame(false)" class="btn btn-default">No</button>
+          <button (click)="isPromote(true)" class="btn btn-default">Yes</button>
+          <button (click)="startGame(false)" class="btn btn-default">No</button>
         </div>
-        <div [class.hidden]="!isEnd" class="info-end">
-          <h3 class="title">{{ message }}</h3>
-          <h4 class="title">Retry ?</h4>
-          <div class="btn-list">
-            <button class="btn btn-default">Yes</button>
-            <button class="btn btn-default">No</button>
-          </div>
+      </div>
+      <div [hidden]="!isEnd" class="info-end">
+        <h3 class="title">{{ message }}</h3>
+        <h4 class="title">Retry ?</h4>
+        <div class="btn-list">
+          <button class="btn btn-default">Yes</button>
+          <button class="btn btn-default">No</button>
         </div>
       </div>
     </div>

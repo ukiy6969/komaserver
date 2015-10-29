@@ -29,28 +29,28 @@
 
         
       .info-promote(
-        [class.hidden]="!promoteMove"
+        [hidden]="!promoteMove"
       )
         h3.title Is Promote ?
         .btn-list
           button.btn.btn-default(
-            (click)="game.isPromote(true)"
+            (click)="isPromote(true)"
           ) Yes
           button.btn.btn-default(
-            (click)="game.startGame(false)"
+            (click)="startGame(false)"
           ) No
         
       
-        .info-end(
-          [class.hidden]="!isEnd"
-        )
-          h3.title {{ message }}
-          h4.title Retry ?
-          .btn-list
-            button.btn.btn-default(
-            ) Yes
-            button.btn.btn-default(
-            ) No
+      .info-end(
+        [hidden]="!isEnd"
+      )
+        h3.title {{ message }}
+        h4.title Retry ?
+        .btn-list
+          button.btn.btn-default(
+          ) Yes
+          button.btn.btn-default(
+          ) No
   
     .touch-area-container
       each p, i in piecer
