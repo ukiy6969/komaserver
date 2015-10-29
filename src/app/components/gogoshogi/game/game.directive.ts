@@ -43,7 +43,7 @@ interface IGogoshogiMessage {
 
 @Component({
   selector: 'gogoshogi-game',
-  templateUrl: '/src/app/components/gogoshogi/game/game.html',
+  templateUrl: './app/components/gogoshogi/game/game.html',
   directives: [NgFor, Mass, Koma, NgIf]
 })
 export class GogoshogiGame {
@@ -144,6 +144,9 @@ export class GogoshogiGame {
     this.socket.on('err', (err: IGogoshogiError) => {
       console.log('err', err);
     });
+    this.socket.on('win', (win: any) => {
+      this.endGame(win);
+    });
     this.socket.on('lose', (lose: IGogoshogiMessage) => {
       this.endGame(lose);
     });
@@ -205,8 +208,8 @@ export class GogoshogiGame {
     return _.find(this.komas, {x: x, y: y});
   }
 
-  getKomaDetail(x: number, y: number, piece: String, enemy: Boolean) {
-    return _.find(this.komas, {x: x, y: y, piece: piece, enemy: enemy});
+  getKomaDetail(x: number, y: number, enemy: Boolean) {
+    return _.find(this.komas, {x: x, y: y, enemy: enemy});
   }
 
   getKomaHave(piece: String, enemy: Boolean): GogoshogiKomaModel {
@@ -281,7 +284,7 @@ export class GogoshogiGame {
       promote: false
     };
 
-    if ( y === 1 && (!this.isSelect.isPromote)) {
+    if ( y === 1 && (!this.isSelect.isPromote) && this.isSelect.canPromote() ) {
       this.promoteMove = move;
       return;
     }
@@ -321,7 +324,7 @@ export class GogoshogiGame {
     } else {
       enemy = true;
     }
-    var moveKoma: GogoshogiKomaModel = this.getKomaDetail(move.from.x, move.from.y, move.piece, enemy);
+    var moveKoma: GogoshogiKomaModel = this.getKomaDetail(move.from.x, move.from.y, enemy);
     if (move.capture) {
       var capKoma = this.getKoma(move.to.x, move.to.y);
       capKoma.move(0, 0);
