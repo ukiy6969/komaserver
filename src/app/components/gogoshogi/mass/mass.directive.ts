@@ -3,7 +3,7 @@ import { MassModel } from './mass';
 
 @Component({
   selector: 'gogoshogi-mass',
-  templateUrl: '/src/app/components/gogoshogi/mass/mass.html'
+  templateUrl: './app/components/gogoshogi/mass/mass.html'
 })
 export class Mass {
 
