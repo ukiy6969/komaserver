@@ -52,7 +52,7 @@ __decorate([
 Koma = __decorate([
     Component({
         selector: 'gogoshogi-koma',
-        templateUrl: '/src/app/components/gogoshogi/koma/koma.html',
+        templateUrl: './app/components/gogoshogi/koma/koma.html',
         directives: [NgClass]
     }), 
     __metadata('design:paramtypes', [])

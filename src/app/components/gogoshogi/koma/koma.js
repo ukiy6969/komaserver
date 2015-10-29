@@ -31,6 +31,12 @@ export class GogoshogiKomaModel {
         this.isPromote = true;
         this.isPromote = false;
     }
+    canPromote() {
+        if (this.x == 0 && this.y == 0) {
+            return false;
+        }
+        return true;
+    }
 }
 export class GogoshogiKomaOu extends GogoshogiKomaModel {
     constructor(enemy) {

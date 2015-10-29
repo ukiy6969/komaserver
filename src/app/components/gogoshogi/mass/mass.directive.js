@@ -35,7 +35,7 @@ __decorate([
 Mass = __decorate([
     Component({
         selector: 'gogoshogi-mass',
-        templateUrl: '/src/app/components/gogoshogi/mass/mass.html'
+        templateUrl: './app/components/gogoshogi/mass/mass.html'
     }), 
     __metadata('design:paramtypes', [])
 ], Mass);
