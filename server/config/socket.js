@@ -45,9 +45,9 @@ module.exports = function(app) {
           }
           socket.emit('moved', move);
           var kmove = yield gogo.moveKomachan(id);
-          if (move.lose) {
+          if (kmove.lose) {
             var wgame = yield gogo.endGame(id);
-            socket.emit('win', {message: 'YOU WIN (>ω<)', game: fgame});
+            socket.emit('win', {message: 'YOU WIN (>ω<)', game: wgame});
             if (gogo) {
               gogo = null;
             }
@@ -65,7 +65,7 @@ module.exports = function(app) {
           }
           socket.emit('legal', legalMoves);
         }).catch(function(err){
-          console.log(err);
+          console.log('err', err);
         });
       });
       socket.on('disconnect', function(data){
