@@ -5,7 +5,7 @@ import { _ } from 'lodash';
 
 @Component({
   selector: 'gogoshogi-koma',
-  templateUrl: '/src/app/components/gogoshogi/koma/koma.html',
+  templateUrl: './app/components/gogoshogi/koma/koma.html',
   directives: [NgClass]
 })
 export class Koma {
