@@ -79,9 +79,11 @@ export let GogoshogiGame = class {
             console.log(this.color);
         });
         this.socket.on('moved', (move) => {
+            console.log(move);
             this.moved(move);
         });
         this.socket.on('legal', (lmoves) => {
+            console.log(lmoves);
             lmoves.forEach((lmove) => {
                 if (this.color === 1) {
                     this.reverseMove(lmove);
@@ -148,6 +150,9 @@ export let GogoshogiGame = class {
     }
     getKomaDetail(x, y, enemy) {
         return _.find(this.komas, { x: x, y: y, enemy: enemy });
+    }
+    getKomaDetailPiece(x, y, piece, enemy) {
+        return _.find(this.komas, { x: x, y: y, piece: piece, enemy: enemy });
     }
     getKomaHave(piece, enemy) {
         return _.find(this.komas, { x: 0, y: 0, piece: piece, enemy: enemy });
@@ -233,6 +238,7 @@ export let GogoshogiGame = class {
         this.legalMoves = null;
     }
     moved(move) {
+        var moveKoma;
         if (this.color === 1) {
             this.reverseMove(move);
         }
@@ -243,15 +249,18 @@ export let GogoshogiGame = class {
         else {
             enemy = true;
         }
-        var moveKoma = this.getKomaDetail(move.from.x, move.from.y, enemy);
+        if (move.promote) {
+            moveKoma = this.getKomaDetail(move.from.x, move.from.y, enemy);
+            moveKoma.promote();
+        }
+        else {
+            moveKoma = this.getKomaDetailPiece(move.from.x, move.from.y, move.piece, enemy);
+        }
         if (move.capture) {
             var capKoma = this.getKoma(move.to.x, move.to.y);
             capKoma.move(0, 0);
             capKoma.changeOwner();
             capKoma.unPromote();
-        }
-        if (move.promote) {
-            moveKoma.promote();
         }
         moveKoma.move(move.to.x, move.to.y);
     }
