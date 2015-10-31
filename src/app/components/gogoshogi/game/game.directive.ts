@@ -214,6 +214,10 @@ export class GogoshogiGame {
     return _.find(this.komas, {x: x, y: y, enemy: enemy});
   }
 
+  getKomaDetailPiece(x: number, y: number,piece: String, enemy: Boolean) {
+    return _.find(this.komas, {x: x, y: y, piece: piece, enemy: enemy});
+  }
+
   getKomaHave(piece: String, enemy: Boolean): GogoshogiKomaModel {
     return _.find(this.komas, {x: 0, y: 0, piece: piece, enemy: enemy});
   }
@@ -317,6 +321,7 @@ export class GogoshogiGame {
   }
 
   moved(move: IGogoshogiMoveOpt) {
+    var moveKoma: GogoshogiKomaModel;
     if (this.color === 1) {
       this.reverseMove(move);
     }
@@ -326,15 +331,17 @@ export class GogoshogiGame {
     } else {
       enemy = true;
     }
-    var moveKoma: GogoshogiKomaModel = this.getKomaDetail(move.from.x, move.from.y, enemy);
+    if (move.promote) {
+      moveKoma = this.getKomaDetail(move.from.x, move.from.y, enemy);
+      moveKoma.promote();
+    } else {
+      moveKoma = this.getKomaDetailPiece(move.from.x, move.from.y, move.piece, enemy);
+    }
     if (move.capture) {
       var capKoma = this.getKoma(move.to.x, move.to.y);
       capKoma.move(0, 0);
       capKoma.changeOwner();
       capKoma.unPromote();
-    }
-    if (move.promote) {
-      moveKoma.promote();
     }
     moveKoma.move(move.to.x, move.to.y);
   }
