@@ -56,7 +56,7 @@ export let GogoshogiGame = class {
                 }));
             }
         }
-        this.socket = io.connect('localhost:3000');
+        this.socket = io.connect('/');
         this.isStart = false;
         this.promoteMove = null;
         this.isEnd = false;
