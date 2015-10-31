@@ -1,28 +1,15 @@
-module komaclient {
-  'use strict';
+/// <reference path="../../../typings/tsd.d.ts"/>
+import { Component, bootstrap, NgFor, NgIf} from 'angular2/angular2';
 
-  /** @ngInject */
-  export function acmeNavbar(): ng.IDirective {
+@Component({
+  selector: 'navbar',
+  templateUrl: './app/components/navbar/navbar.html',
+  directives: [NgFor, NgIf]
+})
+export class Navbar {
+  public relativeDate: string;
 
-    return {
-      restrict: 'E',
-      scope: {
-        creationDate: '='
-      },
-      templateUrl: 'app/components/navbar/navbar.html',
-      controller: NavbarController,
-      controllerAs: 'vm',
-      bindToController: true
-    };
-
-  }
-
-  /** @ngInject */
-  class NavbarController {
-    public relativeDate: string;
-
-    constructor() {
-      var self = this;
-    }
+  constructor() {
+    var self = this;
   }
 }
