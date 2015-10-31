@@ -131,9 +131,11 @@ export class GogoshogiGame {
       console.log(this.color);
     });
     this.socket.on('moved', (move: IGogoshogiMoveOpt) => {
+      console.log(move);
       this.moved(move);
     });
     this.socket.on('legal', (lmoves: Array<IGogoshogiMoveOpt>) => {
+      console.log(lmoves);
       lmoves.forEach((lmove: IGogoshogiMoveOpt) => {
         if (this.color === 1) {
           this.reverseMove(lmove);

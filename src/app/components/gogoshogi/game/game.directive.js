@@ -79,9 +79,11 @@ export let GogoshogiGame = class {
             console.log(this.color);
         });
         this.socket.on('moved', (move) => {
+            console.log(move);
             this.moved(move);
         });
         this.socket.on('legal', (lmoves) => {
+            console.log(lmoves);
             lmoves.forEach((lmove) => {
                 if (this.color === 1) {
                     this.reverseMove(lmove);
