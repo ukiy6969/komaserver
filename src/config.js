@@ -13,7 +13,7 @@ System.config({
   },
 
   map: {
-    "angular2": "npm:angular2@2.0.0-alpha.44",
+    "angular2": "npm:angular2@2.0.0-alpha.45",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "clean-css": "npm:clean-css@3.4.6",
     "css": "github:systemjs/plugin-css@0.1.19",
@@ -112,14 +112,14 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:angular2@2.0.0-alpha.44": {
+    "npm:angular2@2.0.0-alpha.45": {
       "@reactivex/rxjs": "npm:@reactivex/rxjs@5.0.0-alpha.4",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "reflect-metadata": "npm:reflect-metadata@0.1.1",
+      "reflect-metadata": "npm:reflect-metadata@0.1.2",
       "zone.js": "npm:zone.js@0.5.8"
     },
     "npm:asn1.js@2.2.1": {
@@ -455,10 +455,6 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
-    },
-    "npm:reflect-metadata@0.1.1": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:reflect-metadata@0.1.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
