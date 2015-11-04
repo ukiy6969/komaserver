@@ -58,6 +58,9 @@ module.exports = function(app) {
           return gogo.moveKomachan(id);
         })
         .then(function(kmove){
+          if (!kmove) {
+            return;
+          }
           if (kmove.lose) {
             gogo.endGame(id)
             .then(function(wgame){
@@ -73,6 +76,9 @@ module.exports = function(app) {
           return gogo.getLegalmoves(id);
         })
         .then(function(legalMoves) {
+          if ( !legalMoves) {
+            return;
+          }
           if ( !legalMoves.length) {
             gogo.endGame(id)
             .then(function(lgame){
