@@ -12,60 +12,87 @@ module.exports = function(app) {
       var game = gogo.newGame({player: ['client', 'koma']})
       socket.emit('confirm', game);
       socket.once('agree', function(data){
-        return co(function* (){
-          var game = yield gogo.startGame(data);
+        gogo.startGame(data)
+        .then(function(game){
           id = game._id;
           socket.join(id);
           socket.emit('start', game);
+          return game;
+        })
+        .then(function(game){
           if( gogo.firstMove === 'koma' ) {
-            var move = yield gogo.moveKomachan(id);
-            socket.emit('moved', move);
-            var legalmoves = yield gogo.getLegalmoves(id);
-            socket.emit('legal', legalmoves);
+            gogo.moveKomachan(id)
+            .then(function(move){
+              console.log('moved', move);
+              socket.emit('moved', move);
+              return gogo.getLegalmoves(id);
+            })
+            .then(function(legalmoves){
+              socket.emit('legal', legalmoves);
+              console.log('legal', legalmoves);
+            });
           } else {
-            var legalmoves = yield gogo.getLegalmoves(id);
-            socket.emit('legal', legalmoves);
+            gogo.getLegalmoves(id)
+            .then(function(legalmoves){
+              socket.emit('legal', legalmoves);
+              console.log('legal', legalmoves);
+            })
           }
-        }).catch(function(err){
-          console.log(err);
-          socket.emit('err', err);
-        });
+        })
       });
       socket.on('move', function(data){
         var id = socket.rooms[socket.rooms.length-1];
-        return co(function* (){
-          var move = yield gogo.moveClient(id, data);
+        gogo.moveClient(id, data)
+        .then(function(move){
           if (move.love) {
-            var lgame = yield gogo.endGame(id);
-            socket.emit('lose', move);
-            if(gogo) {
-              gogo = null;
-            }
-            return;
+            gogo.endGame(id)
+            .then(function(lgame){
+              socket.emit('lose', move);
+              if(gogo) {
+                gogo = null;
+              }
+            });
           }
           socket.emit('moved', move);
-          var kmove = yield gogo.moveKomachan(id);
+          console.log('moved', move);
+          return gogo.moveKomachan(id);
+        })
+        .then(function(kmove){
           if (kmove.lose) {
-            var wgame = yield gogo.endGame(id);
-            socket.emit('win', {message: 'YOU WIN (>ω<)', game: wgame});
-            if (gogo) {
-              gogo = null;
-            }
+            gogo.endGame(id)
+            .then(function(wgame){
+              socket.emit('win', {message: 'YOU WIN (>ω<)', game: wgame});
+              if (gogo) {
+                gogo = null;
+              }
+            });
             return;
           }
           socket.emit('moved', kmove);
-          var legalMoves = yield gogo.getLegalmoves(id);
-          if (!legalMoves.length) {
-            var lgame = yield gogo.endGame(id);
-            socket.emit('lose', {message: 'YOU LOSE >_<', game: lgame});
-            if(gogo) {
-              gogo = null;
-            }
+          console.log('mmoved', kmove);
+          return gogo.getLegalmoves(id);
+        })
+        .then(function(legalMoves) {
+          if ( !legalMoves.length) {
+            gogo.endGame(id)
+            .then(function(lgame){
+              socket.emit('lose', {message: 'YOU LOSE >_<', game: lgame});
+              if(gogo) {
+                gogo = null;
+              }
+            });
             return;
           }
           socket.emit('legal', legalMoves);
-        }).catch(function(err){
+          console.log('legal', legalMoves);
+        })
+        .catch(function(err){
           console.log('err', err);
+          socket.emit('err', err);
+          if(gogo) {
+            gogo = null;
+          }
+          socket.disconnect();
         });
       });
       socket.on('disconnect', function(data){
