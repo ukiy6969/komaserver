@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var komaEnum = ['OU','KI','GI','KA','HI','FU','TO','NG','UM','RY'];
 
 var gogoShogiSchema = mongoose.Schema({
+  startDate : Date,
+  endDate : Date,
   header: {
     firstMove: String,
     secondMove: String,
@@ -22,8 +24,6 @@ var gogoShogiSchema = mongoose.Schema({
       promote: { type: Boolean },
       capture: { type: String },
       isAttack: { type: Boolean },
-      lose: { type: Boolean },
-      message: { type: String }
     }
   ],
   conclude: {

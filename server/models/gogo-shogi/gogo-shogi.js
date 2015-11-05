@@ -40,12 +40,15 @@ GogoController.prototype.newGame = function(opt) {
 GogoController.prototype.startGame = function(g){
   var self = this;
   self.model = new GogoShogiModel(g);
+  self.model.startDate = Date.now();
   return self.model.save();
 }
 GogoController.prototype.endGame = function(id){
   var self = this;
+  this.komachan.end();
   return co(function* (){
     var game = yield GogoShogiModel.findById(id).exec();
+    game.endDate = Date.now();
     return yield game.save();
   });
 }
