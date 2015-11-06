@@ -50,8 +50,8 @@ GogoController.prototype.endGame = function(id){
     var game = yield GogoShogiModel.findById(id).exec();
     game.endDate = Date.now();
     game.conclude = {};
-    game.conclude.winner = game.moves[game.moves.length - 1];
-    game.conclude.loser = game.moves[game.moves.length - 2];
+    game.conclude.winner = game.moves[game.moves.length - 1].color;
+    game.conclude.loser = game.moves[game.moves.length - 2].color;
     return yield game.save();
   });
 }
