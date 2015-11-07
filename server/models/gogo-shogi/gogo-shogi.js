@@ -53,6 +53,8 @@ GogoController.prototype.endGame = function(id){
     game.conclude.winner = game.moves[game.moves.length - 1].color;
     game.conclude.loser = game.moves[game.moves.length - 2].color;
     return yield game.save();
+  }).catch(function(err){
+    console.log(err);
   });
 }
 GogoController.prototype.moveClient = function(id,cmove){
