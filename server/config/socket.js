@@ -20,7 +20,7 @@ module.exports = function(app) {
           return game;
         })
         .then(function(game){
-          if( gogo.firstMove === 'koma' ) {
+          if( game.firstMove === 'koma' ) {
             gogo.moveKomachan(id)
             .then(function(move){
               console.log('moved', move);
