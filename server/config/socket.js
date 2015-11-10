@@ -44,14 +44,15 @@ module.exports = function(app) {
         var id = socket.rooms[socket.rooms.length-1];
         gogo.moveClient(id, data)
         .then(function(move){
-          if (move.love) {
+          if (move.lose) {
             gogo.endGame(id)
             .then(function(lgame){
-              socket.emit('lose', move);
+              socket.emit('lose', {message: 'YOU LOSE >_<', game: lgame});
               if(gogo) {
                 gogo = null;
               }
             });
+            return;
           }
           socket.emit('moved', move);
           console.log('moved', move);
