@@ -3,6 +3,8 @@ var gogoShogi = require('../models/gogo-shogi/gogo-shogi');
 var co = require('co');
 module.exports = function(app) {
   var io = socketIo(app);
+  io.set('heartbeat timeout',500000);
+  io.set('heartbeat interval',5000);
   var komachanSocket = null;
 
   io.on('connection', function(socket) {
@@ -106,6 +108,9 @@ module.exports = function(app) {
           gogo = null;
         }
       });
+    });
+    socket.on('ping', function(data){
+      //console.log('ping', data);
     });
   });
 }
