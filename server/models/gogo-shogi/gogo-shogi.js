@@ -15,7 +15,6 @@ function GogoController () {
   self.firstMove;
   self.secondMove;
   self.komachan = Komachan.newKomachan();
-  self.komachan.start();
 }
 
 GogoController.prototype.newGame = function(opt) {
@@ -41,6 +40,11 @@ GogoController.prototype.startGame = function(g){
   var self = this;
   self.model = new GogoShogiModel(g);
   self.model.startDate = Date.now();
+  var startOpt = {};
+  if (g.komachanOpt) {
+    console.log('komachanOpt', g.komachanOpt);
+  }
+  self.komachan.start(g.komachanOpt);
   return self.model.save();
 }
 GogoController.prototype.endGame = function(id){
