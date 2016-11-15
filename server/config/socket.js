@@ -45,7 +45,6 @@ module.exports = function(app) {
         })
       });
       socket.on('move', function(data){
-        var id = socket.rooms[socket.rooms.length-1];
         gogo.moveClient(id, data)
         .then(function(move){
           if (move.lose) {
